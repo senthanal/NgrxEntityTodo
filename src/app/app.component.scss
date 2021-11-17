@@ -1,0 +1,13 @@
+:host {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .app-create-todo-container {
+    align-self: flex-start;
+  }
+
+  .app-todo-container {
+    padding-top: 50px;
+  }
+}

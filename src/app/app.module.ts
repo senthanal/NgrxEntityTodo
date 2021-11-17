@@ -9,12 +9,17 @@ import { environment } from '../environments/environment';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from './reducers/reducers';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
-  declarations: [AppComponent, TodoListComponent],
+  declarations: [AppComponent, TodoListComponent, TodoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatButtonModule,
+    MatIconModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
