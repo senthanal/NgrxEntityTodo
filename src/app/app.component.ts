@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     this.isAddView$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       pluck('url'),
-      map((url) => (url === '/todo' ? true : false))
+      map((url) => (url === '/add-todo' ? true : false))
     );
   }
 }

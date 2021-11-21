@@ -1,1 +1,3 @@
-<p>todo-list works!</p>
+<ng-container *ngIf="(todos$ | async) as todo">
+    <app-todo [todo]="todo"></app-todo>
+</ng-container>

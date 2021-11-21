@@ -1,0 +1,8 @@
+:host {
+  .app-todo {
+    max-width: 300px;
+    &.mat-card{
+        background-color: darkgrey;
+    }
+  }
+}
