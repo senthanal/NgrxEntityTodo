@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { debounceTime, filter, withLatestFrom } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { AppState } from '../reducers/index';
+import { selectTotalTodos } from '../todo-list/todos.selectors';
 import { addTodo } from './add-todo.actions';
-import { getTodos } from './add-todo.selectors';
 
 @Component({
   selector: 'app-add-todo',
@@ -21,7 +21,7 @@ export class AddTodoComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    const countTodos$ = this.store.pipe(select(getTodos));
+    const countTodos$ = this.store.pipe(select(selectTotalTodos));
     this.form.valueChanges
       .pipe(
         filter((value) => this.form.valid && value.title && value.content),
@@ -37,7 +37,7 @@ export class AddTodoComponent implements OnInit {
         this.store.dispatch(
           addTodo({
             todo: {
-              id: 1,
+              id: countTodos++,
               title: value.title,
               content: value.content,
             } as Todo,

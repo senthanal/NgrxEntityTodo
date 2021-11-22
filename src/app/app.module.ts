@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -12,11 +13,10 @@ import { AddTodoModule } from './add-todo/add-todo.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { metaReducers, reducers } from './reducers';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoComponent } from './todo/todo.component';
+import { TodoListModule } from './todo-list/todo-list.module';
 
 @NgModule({
-  declarations: [AppComponent, TodoListComponent, TodoComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +24,7 @@ import { TodoComponent } from './todo/todo.component';
     MatIconModule,
     MatCardModule,
     BrowserAnimationsModule,
+    TodoListModule,
     AddTodoModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -41,8 +42,9 @@ import { TodoComponent } from './todo/todo.component';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot({
-        stateKey: 'router'
+      stateKey: 'router',
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
