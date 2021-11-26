@@ -7,23 +7,23 @@ import {
 import { select, Store } from '@ngrx/store';
 import { filter, finalize, first, Observable, tap } from 'rxjs';
 import { AppState } from '../reducers';
-import { loadAllTodos } from './todos.actions';
+import { fetchTodos } from './todos.actions';
 import { areTodosLoaded } from './todos.selectors';
 
 @Injectable()
-export class TodosResolver implements Resolve<any> {
+export class TodosResolver implements Resolve<boolean> {
   loading = false;
   constructor(private store: Store<AppState>) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<any> {
+  ): Observable<boolean> {
     return this.store.pipe(
       select(areTodosLoaded),
       tap((todosLoaded) => {
         if (!this.loading && !todosLoaded) {
           this.loading = true;
-          this.store.dispatch(loadAllTodos());
+          this.store.dispatch(fetchTodos());
         }
       }),
       filter((todosLoaded) => todosLoaded),

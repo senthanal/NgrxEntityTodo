@@ -24,7 +24,7 @@ export const todosReducer = createReducer(
   ),
   on(TodoActions.addTodo, (state, action) => {
     console.log(action, state);
-    return adapter.addOne(action.todo, state);
+    return adapter.upsertOne(action.todo, state);
   }),
   on(TodosActions.todoSelected, (state, { todoId }) => {
     console.log(todoId, state);

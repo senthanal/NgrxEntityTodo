@@ -1,11 +1,13 @@
-<div class="app-create-todo-container">
-    <button mat-fab color="primary" aria-label="create a todo" routerLink="todo" *ngIf="isListView$ | async">
+<div class="app-todo-header">
+    <button mat-fab color="primary" class="mat-elevation-z4" aria-label="create a todo" routerLink="todo"
+        *ngIf="isListView$ | async">
         <mat-icon>add</mat-icon>
     </button>
-    <button mat-fab color="primary" aria-label="save and back to todo list" routerLink="" *ngIf="isAddView$ | async">
+    <button mat-fab color="primary" class="mat-elevation-z4" aria-label="save and back to todo list" routerLink=""
+        *ngIf="isAddView$ | async">
         <mat-icon>keyboard_backspace</mat-icon>
     </button>
 </div>
-<div class="app-todo-container">
+<div class="app-todo-container mat-elevation-z4">
     <router-outlet></router-outlet>
 </div>

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
-import { combineLatest, debounceTime } from 'rxjs';
+import { combineLatest, debounceTime, filter } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { AppState } from '../reducers';
 import { todoUpdated } from './edit-todo.actions';
@@ -26,7 +26,10 @@ export class EditTodoComponent implements OnInit {
       this.titleControl.valueChanges,
       this.contentControl.valueChanges,
     ])
-      .pipe(debounceTime(400))
+      .pipe(
+        filter(([title, content]) => title !== undefined || content !== undefined),
+        debounceTime(400)
+      )
       .subscribe(([title, content]) =>
         this.updateStore({ id: this.todo.id, title, content })
       );

@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { first, map, Observable, tap } from 'rxjs';
+import { filter, first, map, Observable, tap } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { AppState } from '../reducers';
 import { selectTodo } from '../todo-list/todos.selectors';
@@ -20,6 +20,7 @@ export class EditTodoResolver implements Resolve<Todo> {
     return this.store.pipe(
       select(selectTodo),
       map((response) => response as Todo),
+      filter((todo) => todo.hasOwnProperty('id')),
       tap((todo) => console.log(todo)),
       first()
     );

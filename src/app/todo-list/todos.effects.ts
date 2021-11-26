@@ -10,10 +10,8 @@ import { selectAllTodos } from './todos.selectors';
 export class TodosEffects {
   loadTodos$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TodosActions.loadAllTodos),
-      map((_action) => [
-        { id: 1, title: 'test', content: 'test test' } as Todo,
-      ]),
+      ofType(TodosActions.fetchTodos),
+      map((_action) => []),
       map((todos) => TodosActions.allTodosLoaded({ todos }))
     )
   );
