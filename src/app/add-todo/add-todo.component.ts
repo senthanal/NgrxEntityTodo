@@ -21,14 +21,16 @@ export class AddTodoComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     const value: Todo = this.form.getRawValue();
-    this.store.dispatch(
-      addTodo({
-        todo: {
-          id: new Date().getTime(),
-          title: value.title,
-          content: value.content,
-        } as Todo,
-      })
-    );
+    if (value.title || value.content) {
+      this.store.dispatch(
+        addTodo({
+          todo: {
+            id: new Date().getTime(),
+            title: value.title,
+            content: value.content,
+          } as Todo,
+        })
+      );
+    }
   }
 }
