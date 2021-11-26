@@ -1,5 +1,5 @@
 <div class="app-create-todo-container">
-    <button mat-fab color="primary" aria-label="create a todo" routerLink="add-todo" *ngIf="isListView$ | async">
+    <button mat-fab color="primary" aria-label="create a todo" routerLink="todo" *ngIf="isListView$ | async">
         <mat-icon>add</mat-icon>
     </button>
     <button mat-fab color="primary" aria-label="save and back to todo list" routerLink="" *ngIf="isAddView$ | async">

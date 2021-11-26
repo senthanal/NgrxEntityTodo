@@ -1,8 +1,10 @@
-<mat-card class="app-todo">
-  <mat-card-header>
-    <mat-card-title>{{todo.title}}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>{{todo.content}}
-  </mat-card-content>
-</mat-card>
+<ng-container *ngIf="todo">
+    <mat-card class="app-todo" (click)="selected.emit(todo)">
+        <mat-card-header>
+            <mat-card-title>{{todo.title}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>{{todo.content}}
+        </mat-card-content>
+    </mat-card>
+</ng-container>

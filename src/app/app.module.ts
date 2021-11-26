@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AddTodoModule } from './add-todo/add-todo.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditTodoModule } from './edit-todo/edit-todo.module';
 import { metaReducers, reducers } from './reducers';
 import { TodoListModule } from './todo-list/todo-list.module';
 
@@ -26,6 +27,7 @@ import { TodoListModule } from './todo-list/todo-list.module';
     BrowserAnimationsModule,
     TodoListModule,
     AddTodoModule,
+    EditTodoModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

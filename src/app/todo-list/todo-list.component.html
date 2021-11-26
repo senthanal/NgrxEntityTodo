@@ -1,2 +1,2 @@
 <ng-container *ngIf="(todos$ | async) as todos">
-    <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+    <app-todo *ngFor="let todo of todos" [todo]="todo" (selected)="selectedTodo($event)"></app-todo>

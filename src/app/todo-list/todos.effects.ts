@@ -8,25 +8,23 @@ import { selectAllTodos } from './todos.selectors';
 
 @Injectable()
 export class TodosEffects {
-  loadTodos$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(TodosActions.loadAllTodos),
-        map((_action) => [
-          { id: 1, title: 'test', content: 'test test' } as Todo,
-        ]),
-        map((todos) => TodosActions.allTodosLoaded({ todos }))
-      )
+  loadTodos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.loadAllTodos),
+      map((_action) => [
+        { id: 1, title: 'test', content: 'test test' } as Todo,
+      ]),
+      map((todos) => TodosActions.allTodosLoaded({ todos }))
+    )
   );
-  addTodo$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(TodoActions.addTodo),
-        concatLatestFrom(() => this.store.select(selectAllTodos)),
-        map(([action, todos]) =>
-          TodosActions.allTodosLoaded({ todos: [...todos, action.todo] })
-        )
+  addTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodoActions.addTodo),
+      concatLatestFrom(() => this.store.select(selectAllTodos)),
+      map(([action, todos]) =>
+        TodosActions.allTodosLoaded({ todos: [...todos, action.todo] })
       )
+    )
   );
   constructor(private actions$: Actions, private store: Store) {}
 }
