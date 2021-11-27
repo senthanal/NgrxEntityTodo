@@ -10,9 +10,7 @@ export interface TodosState extends EntityState<Todo> {
   selectedTodoId: number | null;
 }
 
-export const adapter = createEntityAdapter<Todo>({
-  selectId: (todo: Todo) => todo.id,
-});
+export const adapter = createEntityAdapter<Todo>();
 
 export const initialTodosState: TodosState = adapter.getInitialState({
   allTodosLoaded: false,
@@ -42,7 +40,7 @@ export const todosReducer = createReducer(
   })
 );
 
-export const { selectAll, selectTotal, selectEntities, selectIds } =
+export const { selectAll, selectTotal, selectEntities } =
   adapter.getSelectors();
 
 export function reducer(state: TodosState | undefined, action: Action) {

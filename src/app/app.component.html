@@ -5,7 +5,7 @@
     </button>
     <button mat-fab color="primary" class="mat-elevation-z4" aria-label="save and back to todo list" routerLink=""
         *ngIf="isAddView$ | async">
-        <mat-icon>keyboard_backspace</mat-icon>
+        <mat-icon>save</mat-icon>
     </button>
     <button mat-fab color="primary" class="mat-elevation-z4" aria-label="delete selected todo" (click) = "deleteTodo()"
         *ngIf="isEditView$ | async">
