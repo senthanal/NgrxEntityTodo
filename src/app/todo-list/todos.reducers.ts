@@ -1,6 +1,8 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { TodoActions, TodosActions } from '../action-types';
+import { TodosActions } from '../action-types';
+import { addTodo } from '../add-todo/add-todo.actions';
+import { updateTodo } from '../edit-todo/edit-todo.actions';
 import { Todo } from '../models/Todo';
 
 export interface TodosState extends EntityState<Todo> {
@@ -22,7 +24,7 @@ export const todosReducer = createReducer(
   on(TodosActions.allTodosLoaded, (state, action) =>
     adapter.addMany(action.todos, { ...state, allTodosLoaded: true })
   ),
-  on(TodoActions.addTodo, (state, action) => {
+  on(addTodo, (state, action) => {
     console.log(action, state);
     return adapter.addOne(action.todo, state);
   }),
@@ -30,7 +32,7 @@ export const todosReducer = createReducer(
     console.log(todoId, state);
     return { ...state, selectedTodoId: todoId };
   }),
-  on(TodoActions.todoUpdated, (state, action) => {
+  on(updateTodo, (state, action) => {
     console.log(action, state);
     return adapter.updateOne(action.update, state);
   }),

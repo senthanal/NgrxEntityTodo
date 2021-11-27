@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { combineLatest, debounceTime, filter } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { AppState } from '../reducers';
-import { todoUpdated } from './edit-todo.actions';
+import { updateTodo } from './edit-todo.actions';
 @Component({
   selector: 'app-edit-todo',
   templateUrl: './edit-todo.component.html',
@@ -46,6 +46,6 @@ export class EditTodoComponent implements OnInit {
       id: t.id,
       changes: t,
     };
-    this.store.dispatch(todoUpdated({ update }));
+    this.store.dispatch(updateTodo({ update }));
   }
 }
