@@ -1,9 +1,9 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { TodosActions } from '../action-types';
 import { addTodo } from '../add-todo/add-todo.actions';
 import { updateTodo } from '../edit-todo/edit-todo.actions';
 import { Todo } from '../models/Todo';
+import { allTodosLoaded, deleteTodo, todoSelected } from './todos.actions';
 
 export interface TodosState extends EntityState<Todo> {
   allTodosLoaded: boolean;
@@ -21,14 +21,14 @@ export const initialTodosState: TodosState = adapter.getInitialState({
 
 export const todosReducer = createReducer(
   initialTodosState,
-  on(TodosActions.allTodosLoaded, (state, action) =>
+  on(allTodosLoaded, (state, action) =>
     adapter.addMany(action.todos, { ...state, allTodosLoaded: true })
   ),
   on(addTodo, (state, action) => {
     console.log(action, state);
     return adapter.addOne(action.todo, state);
   }),
-  on(TodosActions.todoSelected, (state, { todoId }) => {
+  on(todoSelected, (state, { todoId }) => {
     console.log(todoId, state);
     return { ...state, selectedTodoId: todoId };
   }),
@@ -36,7 +36,7 @@ export const todosReducer = createReducer(
     console.log(action, state);
     return adapter.updateOne(action.update, state);
   }),
-  on(TodosActions.deleteTodo, (state, action) => {
+  on(deleteTodo, (state, action) => {
     console.log(action, state);
     return adapter.removeOne(String(state.selectedTodoId), state);
   })

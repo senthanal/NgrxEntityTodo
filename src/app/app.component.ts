@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, map, Observable, pluck } from 'rxjs';
-import { TodosActions } from './action-types';
 import { AppState } from './reducers';
+import { deleteTodo } from './todo-list/todos.actions';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   deleteTodo(): void {
-    this.store.dispatch(TodosActions.deleteTodo());
+    this.store.dispatch(deleteTodo());
     this.router.navigateByUrl('/');
   }
 }
