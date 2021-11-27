@@ -1,10 +1,11 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import { addTodo } from '../add-todo/add-todo.actions';
 import { updateTodo } from '../edit-todo/edit-todo.actions';
 import { Todo } from '../models/Todo';
-import { allTodosLoaded, deleteTodo, todoSelected } from './todos.actions';
+import { loadTodos, deleteTodo, todoSelected } from './todos.actions';
 
+export const featureKey = 'todos';
 export interface TodosState extends EntityState<Todo> {
   allTodosLoaded: boolean;
   selectedTodoId: number | null;
@@ -19,8 +20,8 @@ export const initialTodosState: TodosState = adapter.getInitialState({
 
 export const todosReducer = createReducer(
   initialTodosState,
-  on(allTodosLoaded, (state, action) =>
-    adapter.addMany(action.todos, { ...state, allTodosLoaded: true })
+  on(loadTodos, (state, action) =>
+    adapter.setAll(action.todos, { ...state, allTodosLoaded: true })
   ),
   on(addTodo, (state, action) => {
     console.log(action, state);
@@ -43,6 +44,7 @@ export const todosReducer = createReducer(
 export const { selectAll, selectTotal, selectEntities } =
   adapter.getSelectors();
 
-export function reducer(state: TodosState | undefined, action: Action) {
-  return todosReducer(state, action);
-}
+export const todosFeature = createFeature({
+    name: featureKey,
+    reducer: todosReducer
+});

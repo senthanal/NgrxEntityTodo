@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { TodoComponent } from '../todo/todo.component';
 import { TodoListComponent } from './todo-list.component';
 import { TodosEffects } from './todos.effects';
-import { todosReducer } from './todos.reducers';
+import { todosFeature } from './todos.reducers';
 import { TodosResolver } from './todos.resolver';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { TodosResolver } from './todos.resolver';
     MatIconModule,
     MatCardModule,
     EffectsModule.forFeature([TodosEffects]),
-    StoreModule.forFeature('todos', todosReducer),
+    StoreModule.forFeature(todosFeature),
   ],
   providers: [TodosResolver],
 })

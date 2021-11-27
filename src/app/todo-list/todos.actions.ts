@@ -3,7 +3,7 @@ import { Todo } from '../models/Todo';
 
 export const fetchTodos = createAction('[Todos Resolver] Fetch all todos');
 
-export const allTodosLoaded = createAction(
+export const loadTodos = createAction(
   '[Todos Resolver] All todos loaded',
   props<{ todos: Todo[] }>()
 );

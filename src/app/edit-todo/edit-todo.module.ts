@@ -7,8 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ContenteditableModule } from '@ng-stack/contenteditable';
-import { StoreModule } from '@ngrx/store';
-import { todosReducer } from '../todo-list/todos.reducers';
 import { EditTodoComponent } from './edit-todo.component';
 import { EditTodoResolver } from './edit-todo.resolver';
 
@@ -23,7 +21,6 @@ import { EditTodoResolver } from './edit-todo.resolver';
     MatInputModule,
     ReactiveFormsModule,
     ContenteditableModule,
-    StoreModule.forFeature('todos', todosReducer),
   ],
   providers: [EditTodoResolver],
 })
