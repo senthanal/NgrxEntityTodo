@@ -13,7 +13,7 @@ import { AddTodoModule } from './add-todo/add-todo.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditTodoModule } from './edit-todo/edit-todo.module';
-import { metaReducers, reducers } from './reducers';
+import { metaReducers, reducers } from './app.reducer';
 import { TodoListModule } from './todo-list/todo-list.module';
 
 @NgModule({

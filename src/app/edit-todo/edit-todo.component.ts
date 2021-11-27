@@ -5,7 +5,7 @@ import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
 import { combineLatest, debounceTime, filter } from 'rxjs';
 import { Todo } from '../models/Todo';
-import { AppState } from '../reducers';
+import { AppState } from '../app.reducer';
 import { updateTodo } from './edit-todo.actions';
 @Component({
   selector: 'app-edit-todo',

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Todo } from '../models/Todo';
-import { AppState } from '../reducers';
+import { AppState } from '../app.reducer';
 import { todoSelected } from './todos.actions';
 import { selectAllTodos } from './todos.selectors';
 

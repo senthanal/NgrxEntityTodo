@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, map, Observable, pluck } from 'rxjs';
-import { AppState } from './reducers';
+import { AppState } from './app.reducer';
 import { deleteTodo } from './todo-list/todos.actions';
 
 @Component({

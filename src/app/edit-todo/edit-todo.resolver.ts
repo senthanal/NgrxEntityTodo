@@ -7,7 +7,7 @@ import {
 import { select, Store } from '@ngrx/store';
 import { filter, first, map, Observable, tap } from 'rxjs';
 import { Todo } from '../models/Todo';
-import { AppState } from '../reducers';
+import { AppState } from '../app.reducer';
 import { selectTodo } from '../todo-list/todos.selectors';
 
 @Injectable()
