@@ -33,6 +33,10 @@ export const todosReducer = createReducer(
   on(TodoActions.todoUpdated, (state, action) => {
     console.log(action, state);
     return adapter.updateOne(action.update, state);
+  }),
+  on(TodosActions.deleteTodo, (state, action) => {
+    console.log(action, state);
+    return adapter.removeOne(String(state.selectedTodoId), state);
   })
 );
 

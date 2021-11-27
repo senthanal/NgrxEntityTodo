@@ -7,6 +7,10 @@
         *ngIf="isAddView$ | async">
         <mat-icon>keyboard_backspace</mat-icon>
     </button>
+    <button mat-fab color="primary" class="mat-elevation-z4" aria-label="delete selected todo" (click) = "deleteTodo()"
+        *ngIf="isEditView$ | async">
+        <mat-icon>delete</mat-icon>
+    </button>
 </div>
 <div class="app-todo-container mat-elevation-z4">
     <router-outlet></router-outlet>

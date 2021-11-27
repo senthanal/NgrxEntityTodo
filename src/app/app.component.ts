@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { filter, map, Observable, pluck } from 'rxjs';
+import { TodosActions } from './action-types';
+import { AppState } from './reducers';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,12 @@ import { filter, map, Observable, pluck } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'NgrxTodo';
-  isListView$: Observable<boolean> | undefined;
-  isAddView$: Observable<boolean> | undefined;
-  constructor(private router: Router) {}
+  isListView$!: Observable<boolean>;
+  isAddView$!: Observable<boolean>;
+  isEditView$!: Observable<boolean>;
+
+  constructor(private router: Router, private store: Store<AppState>) {}
+
   ngOnInit(): void {
     this.isListView$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -21,7 +27,19 @@ export class AppComponent implements OnInit {
     this.isAddView$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       pluck('url'),
-      map((url: any) => (url.indexOf('/todo') > -1 ? true : false))
+      map((url: any) => url.indexOf('/todo') > -1)
     );
+    this.isEditView$ = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      pluck('url'),
+      map((url: any) => {
+        return /^\/todo\/[0-9]*$/.test(url);
+      })
+    );
+  }
+
+  deleteTodo(): void {
+    this.store.dispatch(TodosActions.deleteTodo());
+    this.router.navigateByUrl('/');
   }
 }

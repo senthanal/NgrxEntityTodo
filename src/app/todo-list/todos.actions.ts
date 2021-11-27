@@ -12,3 +12,5 @@ export const todoSelected = createAction(
   '[Todos page] Todo selected',
   props<{ todoId: number }>()
 );
+
+export const deleteTodo = createAction('[Todos page] Delete the selected todo');
