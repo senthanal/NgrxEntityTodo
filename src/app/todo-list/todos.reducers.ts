@@ -24,23 +24,16 @@ export const todosReducer = createReducer(
     adapter.setAll(action.todos, { ...state, allTodosLoaded: true })
   ),
   on(addTodo, (state, action) => {
-    console.log(action, state);
-    return adapter.addOne(action.todo, { ...state, selectedTodoId: null });
+    return adapter.addOne(action.todo, state);
   }),
   on(todoSelected, (state, { todoId }) => {
-    console.log(todoId, state);
     return { ...state, selectedTodoId: todoId };
   }),
   on(updateTodo, (state, action) => {
-    console.log(action, state);
-    return adapter.updateOne(action.update, { ...state, selectedTodoId: null });
+    return adapter.updateOne(action.update, state);
   }),
   on(deleteTodo, (state, action) => {
-    console.log(action, state);
-    return adapter.removeOne(String(state.selectedTodoId), {
-      ...state,
-      selectedTodoId: null,
-    });
+    return adapter.removeOne(String(state.selectedTodoId), state);
   })
 );
 
