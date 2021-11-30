@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=https://github.com/senthanal/NgrxEntityTodo",
+    "build": "ng build --base-href=https://senthanal.github.io/NgrxEntityTodo/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "npx angular-cli-ghpages"
+    "deploy": "npx angular-cli-ghpages --dir=dist/NgrxEntityTodo"
   },
   "private": true,
   "dependencies": {
